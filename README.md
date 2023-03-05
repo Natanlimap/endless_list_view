@@ -14,19 +14,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'InfiniteListView Example',
-      home: InfiniteListViewExample(),
+      title: 'EndlessListView Example',
+      home: EndlessListViewExample(),
     );
   }
 }
 
-class InfiniteListViewExample extends StatefulWidget {
+class EndlessListViewExample extends StatefulWidget {
   @override
-  _InfiniteListViewExampleState createState() =>
-      _InfiniteListViewExampleState();
+  _EndlessListViewExampleState createState() =>
+      _EndlessListViewExampleState();
 }
 
-class _InfiniteListViewExampleState extends State<InfiniteListViewExample> {
+class _EndlessListViewExampleState extends State<EndlessListViewExample> {
   final List<Widget> _items = List.generate(20, (index) => Text('Item $index'));
 
   Future<List<Widget>> _loadMoreData() async {
@@ -39,9 +39,9 @@ class _InfiniteListViewExampleState extends State<InfiniteListViewExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('InfiniteListView Example'),
+        title: Text('EndlessListView Example'),
       ),
-      body: InfiniteListView(
+      body: EndlessListView(
         initialItems: _items,
         onLoadMoreData: _loadMoreData,
       ),
@@ -63,7 +63,7 @@ dependencies:
 Then, run flutter pub get to install the package.
 
 ## API Reference
-For more information on how to use the InfiniteListView widget, refer to the API Reference on pub.dev.
+For more information on how to use the EndlessListView widget, refer to the API Reference on pub.dev.
 
 ## Contributions
 Contributions to this package are welcome! If you find a bug or want to add a new feature, please open an issue or pull request on the GitHub repository.
