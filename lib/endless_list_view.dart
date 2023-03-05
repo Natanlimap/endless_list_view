@@ -2,21 +2,21 @@ library endless_list_view;
 
 import 'package:flutter/material.dart';
 
-class InfiniteListView<T> extends StatefulWidget {
+class EndlessListView<T> extends StatefulWidget {
   final List<Widget> initialItems;
   final Future<List<Widget>> Function() onLoadMoreData;
 
-  const InfiniteListView({
+  const EndlessListView({
     Key? key,
     required this.initialItems,
     required this.onLoadMoreData,
   }) : super(key: key);
 
   @override
-  _InfiniteListViewState<T> createState() => _InfiniteListViewState<T>();
+  _EndlessListViewState<T> createState() => _EndlessListViewState<T>();
 }
 
-class _InfiniteListViewState<T> extends State<InfiniteListView<T>> {
+class _EndlessListViewState<T> extends State<EndlessListView<T>> {
   final ScrollController _scrollController = ScrollController();
 
   @override

@@ -10,19 +10,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'InfiniteListView Example',
-      home: InfiniteListViewExample(),
+      title: 'EndlessListView Example',
+      home: EndlessListViewExample(),
     );
   }
 }
 
-class InfiniteListViewExample extends StatefulWidget {
+class EndlessListViewExample extends StatefulWidget {
   @override
-  _InfiniteListViewExampleState createState() =>
-      _InfiniteListViewExampleState();
+  _EndlessListViewExampleState createState() => _EndlessListViewExampleState();
 }
 
-class _InfiniteListViewExampleState extends State<InfiniteListViewExample> {
+class _EndlessListViewExampleState extends State<EndlessListViewExample> {
   final List<Widget> _items = List.generate(20, (index) => Text('Item $index'));
 
   Future<List<Widget>> _loadMoreData() async {
@@ -37,9 +36,9 @@ class _InfiniteListViewExampleState extends State<InfiniteListViewExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('InfiniteListView Example'),
+        title: Text('EndlessListView Example'),
       ),
-      body: InfiniteListView(
+      body: EndlessListView(
         initialItems: _items,
         onLoadMoreData: _loadMoreData,
       ),
