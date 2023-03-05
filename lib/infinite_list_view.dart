@@ -1,7 +1,6 @@
 library infinite_list_view;
 
 import 'package:flutter/material.dart';
-import 'package:infinite_list_view/states/load_more_data_state.dart';
 
 class InfiniteListView<T> extends StatefulWidget {
   final List<Widget> initialItems;
@@ -18,7 +17,6 @@ class InfiniteListView<T> extends StatefulWidget {
 }
 
 class _InfiniteListViewState<T> extends State<InfiniteListView<T>> {
-  LoadMoreDataState loadMoreDataState = DataSuccessfullyLoadedState();
   final ScrollController _scrollController = ScrollController();
 
   @override
