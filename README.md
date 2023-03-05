@@ -1,39 +1,69 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# InfiniteListView
+The InfiniteListView class is a Flutter widget that enables infinite scrolling behavior. It allows for loading more data when the user scrolls to the end of the current list. This widget is useful for displaying large lists of data that may not be available all at once, or for optimizing performance by reducing the amount of data loaded at any given time.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+## Example Usage
+``` 
+import 'package:flutter/material.dart';
+import 'package:infinite_list_view/infinite_list_view.dart';
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+void main() {
+  runApp(MyApp());
+}
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'InfiniteListView Example',
+      home: InfiniteListViewExample(),
+    );
+  }
+}
 
-## Features
+class InfiniteListViewExample extends StatefulWidget {
+  @override
+  _InfiniteListViewExampleState createState() =>
+      _InfiniteListViewExampleState();
+}
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+class _InfiniteListViewExampleState extends State<InfiniteListViewExample> {
+  final List<Widget> _items = List.generate(20, (index) => Text('Item $index'));
 
-## Getting started
+  Future<List<Widget>> _loadMoreData() async {
+    await Future.delayed(Duration(seconds: 2));
+    return List.generate(20,
+        (index) => Text('Item ${index + _items.length} - Loaded asynchronously'));
+  }
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('InfiniteListView Example'),
+      ),
+      body: InfiniteListView(
+        initialItems: _items,
+        onLoadMoreData: _loadMoreData,
+      ),
+    );
+  }
+}
 ```
 
-## Additional information
+In this example, we create an InfiniteListView widget and provide it with an initial list of 20 items. When the user scrolls to the end of the list, the _loadMoreData function is called, which simulates loading another 20 items asynchronously. These items are then added to the end of the list, and the user can continue scrolling infinitely.
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+## Installation
+To use this widget in your own Flutter project, simply add the following line to your pubspec.yaml file:
+
+```
+dependencies:
+  infinite_list_view: ^1.0.0
+```
+
+Then, run flutter pub get to install the package.
+
+## API Reference
+For more information on how to use the InfiniteListView widget, refer to the API Reference on pub.dev.
+
+## Contributions
+Contributions to this package are welcome! If you find a bug or want to add a new feature, please open an issue or pull request on the GitHub repository.
