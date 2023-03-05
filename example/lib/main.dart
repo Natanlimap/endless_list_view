@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:infinite_list_view/infinite_list_view.dart';
+import 'package:endless_list_view/endless_list_view.dart';
 
 void main() {
   runApp(MyApp());

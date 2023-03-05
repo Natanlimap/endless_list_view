@@ -4,7 +4,7 @@ The InfiniteListView class is a Flutter widget that enables infinite scrolling b
 ## Example Usage
 ``` 
 import 'package:flutter/material.dart';
-import 'package:infinite_list_view/infinite_list_view.dart';
+import 'package:endless_list_view/endless_list_view.dart';
 
 void main() {
   runApp(MyApp());
@@ -57,7 +57,7 @@ To use this widget in your own Flutter project, simply add the following line to
 
 ```
 dependencies:
-  infinite_list_view: ^1.0.0
+  endless_list_view: ^1.0.0
 ```
 
 Then, run flutter pub get to install the package.

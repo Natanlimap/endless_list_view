@@ -1,4 +1,4 @@
-library infinite_list_view;
+library endless_list_view;
 
 import 'package:flutter/material.dart';
 

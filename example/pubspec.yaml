@@ -32,7 +32,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  infinite_list_view:
+  endless_list_view:
     path: ../
 
 
