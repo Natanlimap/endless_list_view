@@ -1,0 +1,7 @@
+import 'package:flutter_test/flutter_test.dart';
+
+import 'package:infinite_list_view/infinite_list_view.dart';
+
+void main() {
+  test('adds one to input values', () {});
+}
