@@ -1,6 +1,7 @@
 name: infinite_list_view
-description: A new Flutter package project.
+description: InfiniteListView is a widget for Flutter that enables the creation of a scrollable list with infinite loading capabilities, allowing for a seamless user experience and better performance when dealing with large datasets.
 version: 0.0.1
+author: Natan de Lima natanlimap@gmail.com
 homepage:
 
 environment:
@@ -10,7 +11,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  shimmer:
 dev_dependencies:
   flutter_test:
     sdk: flutter
