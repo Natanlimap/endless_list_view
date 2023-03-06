@@ -79,6 +79,7 @@ class _EndlessListViewState<T> extends State<EndlessListView<T>> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      itemCount: widget.initialItems.length,
       addAutomaticKeepAlives: widget.addAutomaticKeepAlives,
       addRepaintBoundaries: widget.addRepaintBoundaries,
       addSemanticIndexes: widget.addSemanticIndexes,
