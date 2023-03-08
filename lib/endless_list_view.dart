@@ -3,6 +3,8 @@ library endless_list_view;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import 'widgets/loader.dart';
+
 class EndlessListView<T> extends StatefulWidget {
   final List<Widget> initialItems;
   final Future<List<Widget>> Function() onLoadMoreData;
@@ -18,12 +20,11 @@ class EndlessListView<T> extends StatefulWidget {
   final ScrollController? controller;
   final ScrollPhysics? physics;
   final EdgeInsetsGeometry? padding;
-  final String? restorationId;
   final bool reverse;
   final Axis scrollDirection;
   final int? semanticChildCount;
   final ScrollViewKeyboardDismissBehavior keyboardDismissBehavior;
-
+  final Widget? loadingWidget;
   const EndlessListView({
     Key? key,
     required this.initialItems,
@@ -38,9 +39,9 @@ class EndlessListView<T> extends StatefulWidget {
     this.cacheExtent,
     this.itemCount,
     this.controller,
+    this.loadingWidget,
     this.physics,
     this.padding,
-    this.restorationId,
     this.reverse = false,
     this.scrollDirection = Axis.vertical,
     this.semanticChildCount,
@@ -53,6 +54,7 @@ class EndlessListView<T> extends StatefulWidget {
 
 class _EndlessListViewState<T> extends State<EndlessListView<T>> {
   final ScrollController _scrollController = ScrollController();
+  bool _loadingMore = false;
 
   @override
   void initState() {
@@ -67,10 +69,15 @@ class _EndlessListViewState<T> extends State<EndlessListView<T>> {
   }
 
   void _onScroll() {
-    if (_scrollController.position.extentAfter == 0) {
+    if (_scrollController.position.extentAfter == 0 && !_loadingMore) {
+      setState(() {
+        _loadingMore = true;
+      });
+
       widget.onLoadMoreData().then((newData) {
         setState(() {
           widget.initialItems.addAll(newData);
+          _loadingMore = false;
         });
       });
     }
@@ -79,7 +86,7 @@ class _EndlessListViewState<T> extends State<EndlessListView<T>> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: widget.initialItems.length,
+      itemCount: widget.initialItems.length + (_loadingMore ? 1 : 0),
       addAutomaticKeepAlives: widget.addAutomaticKeepAlives,
       addRepaintBoundaries: widget.addRepaintBoundaries,
       addSemanticIndexes: widget.addSemanticIndexes,
@@ -92,13 +99,12 @@ class _EndlessListViewState<T> extends State<EndlessListView<T>> {
       keyboardDismissBehavior: widget.keyboardDismissBehavior,
       padding: widget.padding,
       physics: widget.physics,
-      restorationId: widget.restorationId,
       reverse: widget.reverse,
       scrollDirection: widget.scrollDirection,
       semanticChildCount: widget.semanticChildCount,
       itemBuilder: ((context, index) {
         if (index >= widget.initialItems.length) {
-          return const SizedBox.shrink();
+          return widget.loadingWidget ?? Loader(isLoading: _loadingMore);
         }
         final item = widget.initialItems[index];
 
