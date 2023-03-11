@@ -1,5 +1,5 @@
 name: endless_list_view
-description: EndlessListView is a widget for Flutter that enables the creation of a scrollable list with infinite loading capabilities, allowing for a seamless user experience and better performance when dealing with large datasets.
+description: Create infinite loading scrollable lists with EndlessListView, a Flutter widget designed to improve performance and create a seamless user experience with large datasets.
 version: 0.1.0
 repository: https://github.com/Natanlimap/endless_list_view
 
